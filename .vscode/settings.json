@@ -7,6 +7,8 @@
         "**/.DS_Store": true,
         "**/Thumbs.db": true,
         "mb": true,
+        "__pycache__":true,
+        "**/__pycache__":true,
     },
     "editor.formatOnSave": false
 }
