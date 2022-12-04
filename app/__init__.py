@@ -1,4 +1,6 @@
+import logging
 import os
+from logging.handlers import RotatingFileHandler
 
 from flask import Flask
 from flask_login import LoginManager
@@ -17,4 +19,19 @@ migrate = Migrate(myapp, db)
 
 login = LoginManager(myapp)
 login.login_view = 'login'
-from app import models, routes
+from app import errors, models, routes
+
+if not myapp.debug:
+    # ...
+
+    if not os.path.exists('logs'):
+        os.mkdir('logs')
+    file_handler = RotatingFileHandler('logs/microblog.log', maxBytes=10240,
+                                       backupCount=10)
+    file_handler.setFormatter(logging.Formatter(
+        '%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'))
+    file_handler.setLevel(logging.INFO)
+    myapp.logger.addHandler(file_handler)
+
+    myapp.logger.setLevel(logging.INFO)
+    myapp.logger.info('Microblog startup')
