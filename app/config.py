@@ -7,3 +7,5 @@ class Config:
         'sqlite:///' + os.path.join(basedir, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     POSTS_PER_PAGE = 3
+    MAIL_SERVER='localhost'
+    MAIL_PORT=8025

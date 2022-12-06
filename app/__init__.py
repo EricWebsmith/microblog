@@ -6,7 +6,7 @@ from flask import Flask
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
-
+from flask_mail import Mail
 from app.config import Config
 
 myapp = Flask(__name__)
@@ -19,6 +19,7 @@ migrate = Migrate(myapp, db)
 
 login = LoginManager(myapp)
 login.login_view = 'login'
+mail = Mail(myapp)
 from app import errors, models, routes
 
 if not myapp.debug:
