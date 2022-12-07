@@ -1,7 +1,13 @@
 {% extends 'bootstrap/base.html' %}
 
+
 {% block title %}
     {% if title %}{{ title }} - Microblog{% else %}Welcome to Microblog{% endif %}
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    {{ moment.include_moment() }}
 {% endblock %}
 
 {% block navbar %}

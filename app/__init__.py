@@ -9,6 +9,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail
 from app.config import Config
 from flask_bootstrap import Bootstrap
+from flask_moment import Moment
 
 myapp = Flask(__name__)
 SECRET_KEY = os.urandom(32)
@@ -22,6 +23,7 @@ login = LoginManager(myapp)
 login.login_view = 'login'
 mail = Mail(myapp)
 bootstrap = Bootstrap(myapp)
+moment = Moment(myapp)
 from app import errors, models, routes
 
 if not myapp.debug:
