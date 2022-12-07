@@ -7,7 +7,7 @@ from werkzeug.urls import url_parse
 from app import db, myapp
 from app.forms import *
 from app.models import User, Post
-from email import send_password_reset_email
+from app.email import send_password_reset_email
 
 posts = [
     {
@@ -183,7 +183,7 @@ def reset_password_request():
             send_password_reset_email(user)
         flash('Check your email for the instructions to reset password')
         return redirect(url_for('login'))
-    return render_template('reset_password_reset.html', title='Reset Password', form=form)
+    return render_template('reset_password_request.html', title='Reset Password', form=form)
 
 @myapp.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):

@@ -11,3 +11,9 @@ Werkzeug 2.2.2
  ```bash
  export FLASK_DEBUG=1
  ```
+
+ # email server
+
+ ```bash
+ python -m smtpd -n -c DebuggingServer localhost:8025
+ ```
