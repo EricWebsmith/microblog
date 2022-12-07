@@ -1,14 +1,17 @@
 from datetime import datetime
 
-from flask import flash, redirect, render_template, request, url_for
+from flask import (flash, g, jsonify, redirect, render_template, request,
+                   url_for)
+from flask_babel import _, get_locale
 from flask_login import current_user, login_required, login_user, logout_user
-from flask_babel import _
+from langdetect import LangDetectException, detect
 from werkzeug.urls import url_parse
 
 from app import db, myapp
-from app.forms import *
-from app.models import User, Post
 from app.email import send_password_reset_email
+from app.forms import *
+from app.models import Post, User
+from app.translate import translate
 
 posts = [
     {
@@ -26,6 +29,7 @@ def before_request():
     if current_user.is_authenticated:
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
+    g.locale = str(get_locale())
 
 
 @myapp.route('/', methods=['GET', 'POST'])
@@ -34,7 +38,12 @@ def before_request():
 def index():
     form = PostForm()
     if form.validate_on_submit():
-        post = Post(body=form.post.data, author=current_user)
+        try:
+            language = detect(form.post.data)
+        except LangDetectException:
+            language = ''
+        post = Post(body=form.post.data, author=current_user,
+                    language=language)
         db.session.add(post)
         db.session.commit()
         flash(_('Your post is now live!'))
@@ -200,3 +209,10 @@ def reset_password(token):
         flash('Your password has been reset.')
         return redirect(url_for('login'))
     return render_template('reset_password.html', form=form)
+
+@myapp.route('/translate', methods=['POST'])
+@login_required
+def translate_text():
+    return jsonify({'text': translate(request.form['text'],
+                                      request.form['source_language'],
+                                      request.form['dest_language'])})    

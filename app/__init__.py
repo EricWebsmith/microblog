@@ -3,14 +3,15 @@ import os
 from logging.handlers import RotatingFileHandler
 
 from flask import Flask, request
-from flask_login import LoginManager
-from flask_migrate import Migrate
-from flask_sqlalchemy import SQLAlchemy
-from flask_mail import Mail
-from app.config import Config
-from flask_bootstrap import Bootstrap
-from flask_moment import Moment
 from flask_babel import Babel
+from flask_bootstrap import Bootstrap
+from flask_login import LoginManager
+from flask_mail import Mail
+from flask_migrate import Migrate
+from flask_moment import Moment
+from flask_sqlalchemy import SQLAlchemy
+
+from app.config import Config
 
 myapp = Flask(__name__)
 SECRET_KEY = os.urandom(32)

@@ -1,4 +1,5 @@
 import os
+
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config:
@@ -11,3 +12,4 @@ class Config:
     MAIL_SERVER='localhost'
     MAIL_PORT=8025
     LANGUAGES = ['es', 'cn']
+    MS_TRANSLATOR_KEY='29e43fcb2d2844e389cac10c462ccb93'
