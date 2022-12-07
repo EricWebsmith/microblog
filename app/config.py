@@ -10,3 +10,4 @@ class Config:
     ADMINS = ['your-email@example.com']
     MAIL_SERVER='localhost'
     MAIL_PORT=8025
+    LANGUAGES = ['es', 'cn']

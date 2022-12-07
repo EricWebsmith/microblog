@@ -2,3 +2,4 @@ mb/
 *.pyc
 app/app.db
 logs/
+*.mo

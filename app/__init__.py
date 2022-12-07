@@ -2,7 +2,7 @@ import logging
 import os
 from logging.handlers import RotatingFileHandler
 
-from flask import Flask
+from flask import Flask, request
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
@@ -10,6 +10,7 @@ from flask_mail import Mail
 from app.config import Config
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
+from flask_babel import Babel
 
 myapp = Flask(__name__)
 SECRET_KEY = os.urandom(32)
@@ -24,6 +25,7 @@ login.login_view = 'login'
 mail = Mail(myapp)
 bootstrap = Bootstrap(myapp)
 moment = Moment(myapp)
+babel = Babel(myapp)
 from app import errors, models, routes
 
 if not myapp.debug:
@@ -40,3 +42,9 @@ if not myapp.debug:
 
     myapp.logger.setLevel(logging.INFO)
     myapp.logger.info('Microblog startup')
+
+@babel.localeselector
+def get_locale():
+    print(request.accept_languages.best_match(myapp.config['LANGUAGES']))
+    return 'zh'
+    # return request.accept_languages.best_match(myapp.config['LANGUAGES'])

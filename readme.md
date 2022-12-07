@@ -17,3 +17,20 @@ Werkzeug 2.2.2
  ```bash
  python -m smtpd -n -c DebuggingServer localhost:8025
  ```
+
+ # translate
+init
+```bash
+pybabel init -i messages.pot -d app/translations -l es
+```
+
+compile
+```bash
+pybabel compile -d app/translations
+```
+
+update
+```bash
+pybabel extract -F babel.cfg -k _l -o messages.pot .
+pybabel update -i messages.pot -d app/translations
+```

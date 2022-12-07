@@ -1,6 +1,7 @@
 from threading import Thread
 from flask import render_template
 from flask_mail import Message
+from flask_babel import _
 from app import mail, myapp
 
 def send_async_email(app, msg):
@@ -15,7 +16,7 @@ def send_mail(subject:str, sender:str, recipients:list[str], text_body:str, html
 
 def send_password_reset_email(user):
     token = user.get_reset_password_token()
-    send_mail('[Microblog]Reset Password', 
+    send_mail(_('[Microblog]Reset Password'), 
         sender=myapp.config['ADMINS'][0],
         recipients=[user.email],
         text_body=render_template('email/reset_password.txt',
