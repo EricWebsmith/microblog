@@ -1,5 +1,6 @@
 mb/
 *.pyc
+app.db
 app/app.db
 logs/
 *.mo

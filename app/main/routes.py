@@ -1,13 +1,13 @@
 from datetime import datetime
 
 from flask import (flash, g, jsonify, redirect, render_template, request,
-                   url_for)
+                   url_for, current_app)
 from flask_babel import _, get_locale
 from flask_login import current_user, login_required, login_user, logout_user
 from langdetect import LangDetectException, detect
 from werkzeug.urls import url_parse
 
-from app import db, myapp
+from app import db
 from app.main import bp
 from app.auth.email import send_password_reset_email
 from app.main.forms import *
@@ -51,7 +51,7 @@ def index():
         return redirect(url_for('main.index'))
     page = request.args.get('page', 1, type=int)
     posts = current_user.followed_posts() \
-        .paginate(page=page, per_page=myapp.config['POSTS_PER_PAGE'], error_out=False)
+        .paginate(page=page, per_page=current_app.config['POSTS_PER_PAGE'], error_out=False)
     next_url = url_for('main.index', page=posts.next_num) if posts.has_next else None
     prev_url = url_for('main.index', page=posts.prev_num) if posts.has_prev else None
     return render_template('index.html', title='Home', posts=posts.items, form=form, 
@@ -65,7 +65,7 @@ def user(username):
     user = User.query.filter_by(username=username).first_or_404()
     page = request.args.get('page', 1, type=int)
     posts = user.posts.order_by(Post.timestamp.desc()).paginate(
-        page=page, per_page=myapp.config['POSTS_PER_PAGE'], error_out=False)
+        page=page, per_page=current_app.config['POSTS_PER_PAGE'], error_out=False)
     form = EmptyForm()
     next_url = url_for('main.user', username=user.username, page=posts.next_num) \
         if posts.has_next else None
@@ -134,7 +134,7 @@ def unfollow(username):
 def explore():
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(Post.timestamp.desc()).paginate(
-        page=page, per_page=myapp.config['POSTS_PER_PAGE'], error_out=False)
+        page=page, per_page=current_app.config['POSTS_PER_PAGE'], error_out=False)
     next_url = url_for('main.explore', page=posts.next_num) if posts.has_next else None
     prev_url = url_for('main.explore', page=posts.prev_num) if posts.has_prev else None
     return render_template("index.html", title='Explore', posts=posts.items, 
