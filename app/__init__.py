@@ -15,7 +15,6 @@ from app.config import Config
 
 
 
-
 myapp = Flask(__name__)
 SECRET_KEY = os.urandom(32)
 myapp.config['SECRET_KEY'] = SECRET_KEY
@@ -30,11 +29,16 @@ mail = Mail(myapp)
 bootstrap = Bootstrap(myapp)
 moment = Moment(myapp)
 babel = Babel(myapp)
+
 from app.errors import bp as errors_bp
 from app.auth import bp as auth_bp
+from app.main import bp as main_bp
 myapp.register_blueprint(errors_bp)
 myapp.register_blueprint(auth_bp, url_prefix='/auth')
-from app import models, routes
+myapp.register_blueprint(main_bp)
+
+
+from app import models
 
 if not myapp.debug:
     # ...

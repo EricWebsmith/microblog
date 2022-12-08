@@ -1,4 +1,4 @@
-from app import db, myapp, cli
+from app import myapp, db, cli
 from app.models import User, Post
 
 @myapp.shell_context_processor
