@@ -12,6 +12,8 @@ from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 
 from app.config import Config
+from app.errors import bp as errors_bp
+
 
 myapp = Flask(__name__)
 SECRET_KEY = os.urandom(32)
@@ -27,7 +29,8 @@ mail = Mail(myapp)
 bootstrap = Bootstrap(myapp)
 moment = Moment(myapp)
 babel = Babel(myapp)
-from app import errors, models, routes
+myapp.register_blueprint(errors_bp)
+from app import models, routes
 
 if not myapp.debug:
     # ...
