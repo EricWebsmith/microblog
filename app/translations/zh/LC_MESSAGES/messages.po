@@ -7,93 +7,130 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-07 15:57+0800\n"
+"POT-Creation-Date: 2022-12-08 20:43+0800\n"
 "PO-Revision-Date: 2022-12-07 15:44+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh\n"
 "Language-Team: zh <LL@li.org>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=1; plural=0\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.11.0\n"
+"Generated-By: Babel 2.8.0\n"
 
-#: app/forms.py:11 app/forms.py:18 app/forms.py:51
+#: app/__init__.py:18
+msgid "Please log in to access this page."
+msgstr ""
+
+#: app/translate.py:13
+msgid "Error: the translattion service is not configured."
+msgstr ""
+
+#: app/translate.py:31
+msgid "Error: the translation service failed."
+msgstr ""
+
+#: app/auth/email.py:20
+msgid "[Microblog]Reset Password"
+msgstr ""
+
+#: app/auth/forms.py:9 app/auth/forms.py:16 app/main/forms.py:11
 msgid "Username"
 msgstr "用户名"
 
-#: app/forms.py:12 app/forms.py:20 app/forms.py:43
+#: app/auth/forms.py:10 app/auth/forms.py:18 app/auth/forms.py:41
 msgid "Password"
 msgstr "密码"
 
-#: app/forms.py:13
+#: app/auth/forms.py:11
 msgid "Remember Me"
 msgstr "记住我"
 
-#: app/forms.py:14 app/templates/login.html:5
+#: app/auth/forms.py:12 app/auth/routes.py:28 app/templates/auth/login.html:5
 msgid "Sign In"
 msgstr ""
 
-#: app/forms.py:19 app/forms.py:38
+#: app/auth/forms.py:17 app/auth/forms.py:36
 msgid "Email"
 msgstr ""
 
-#: app/forms.py:22 app/forms.py:45
+#: app/auth/forms.py:20 app/auth/forms.py:43
 msgid "Repeat Password"
 msgstr ""
 
-#: app/forms.py:24 app/templates/register.html:5
+#: app/auth/forms.py:22 app/auth/routes.py:49
+#: app/templates/auth/register.html:5
 msgid "Register"
 msgstr ""
 
-#: app/forms.py:29 app/forms.py:64
+#: app/auth/forms.py:27 app/main/forms.py:24
 msgid "Please use a different username."
 msgstr ""
 
-#: app/forms.py:34
+#: app/auth/forms.py:32
 msgid "Please use a different email address."
 msgstr ""
 
-#: app/forms.py:39 app/forms.py:47
+#: app/auth/forms.py:37 app/auth/forms.py:45
 msgid "Request Password Reset"
 msgstr ""
 
-#: app/forms.py:52
+#: app/auth/routes.py:21
+msgid "Invalid username or password"
+msgstr ""
+
+#: app/auth/routes.py:47
+msgid "Congratulations, you are now a registered user!"
+msgstr ""
+
+#: app/auth/routes.py:63
+msgid "Check your email for the instructions to reset your password"
+msgstr ""
+
+#: app/auth/routes.py:66 app/templates/auth/reset_password_request.html:5
+msgid "Reset Password"
+msgstr ""
+
+#: app/auth/routes.py:80
+msgid "Your password has been reset."
+msgstr ""
+
+#: app/main/forms.py:12
 msgid "About me"
 msgstr ""
 
-#: app/forms.py:54 app/forms.py:73
+#: app/main/forms.py:14 app/main/forms.py:33 app/main/forms.py:38
 msgid "Submit"
 msgstr ""
 
-#: app/forms.py:72
+#: app/main/forms.py:32
 msgid "Say something"
 msgstr ""
 
-#: app/routes.py:40
+#: app/main/forms.py:36
+msgid "Message"
+msgstr ""
+
+#: app/main/routes.py:48
 msgid "Your post is now live!"
 msgstr ""
 
-#: app/templates/404.html:4
-msgid "Not Found"
+#: app/main/routes.py:166
+msgid "Your message has been sent."
 msgstr ""
 
-#: app/templates/404.html:5 app/templates/500.html:6
-msgid "Back"
+#: app/main/routes.py:168
+msgid "Send Message"
 msgstr ""
 
-#: app/templates/500.html:4
-msgid "An unexpected error has occurred"
-msgstr ""
-
-#: app/templates/500.html:5
-msgid "The administrator has been notified. Sorry for the inconvenience!"
-msgstr ""
-
-#: app/templates/_post.html:14
+#: app/templates/_post.html:16
 #, python-format
 msgid "%(username)s said %(when)s"
 msgstr "%(username)s 说 %(when)s"
+
+#: app/templates/_post.html:27
+msgid "Translate"
+msgstr ""
 
 #: app/templates/base.html:4
 msgid "Welcome to Microblog"
@@ -111,12 +148,20 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-#: app/templates/base.html:28
+#: app/templates/base.html:29 app/templates/messages.html:4
+msgid "Messages"
+msgstr ""
+
+#: app/templates/base.html:38
 msgid "Profile"
 msgstr ""
 
-#: app/templates/base.html:29
+#: app/templates/base.html:39
 msgid "Logout"
+msgstr ""
+
+#: app/templates/base.html:76
+msgid "Error: Could not contact server."
 msgstr ""
 
 #: app/templates/edit_profile.html:5
@@ -128,65 +173,94 @@ msgstr ""
 msgid "Hi, %(username)s!"
 msgstr ""
 
-#: app/templates/index.html:17 app/templates/user.html:41
+#: app/templates/index.html:17 app/templates/user.html:51
 msgid "Newer posts"
 msgstr ""
 
-#: app/templates/index.html:22 app/templates/user.html:46
+#: app/templates/index.html:22 app/templates/user.html:56
 msgid "Older posts"
 msgstr ""
 
-#: app/templates/login.html:12
-msgid "New User?"
+#: app/templates/messages.html:12
+msgid "Newer messages"
 msgstr ""
 
-#: app/templates/login.html:12
-msgid "Click to Register!"
+#: app/templates/messages.html:17
+msgid "Older messages"
 msgstr ""
 
-#: app/templates/login.html:14
-msgid "Forgot Your Password?"
-msgstr ""
-
-#: app/templates/login.html:15
-msgid "Click to Reset It"
-msgstr ""
-
-#: app/templates/reset_password.html:5
-msgid "Reset Your Password"
-msgstr ""
-
-#: app/templates/reset_password_request.html:5
-msgid "Reset Password"
+#: app/templates/send_message.html:5
+#, python-format
+msgid "Send Message to %(recipient)s"
 msgstr ""
 
 #: app/templates/user.html:8
 msgid "User"
 msgstr ""
 
-#: app/templates/user.html:11
+#: app/templates/user.html:11 app/templates/user_popup.html:11
 msgid "Last seen on"
 msgstr ""
 
-#: app/templates/user.html:13
+#: app/templates/user.html:13 app/templates/user_popup.html:14
 #, python-format
 msgid "%(count)d followers"
 msgstr ""
 
-#: app/templates/user.html:13
+#: app/templates/user.html:13 app/templates/user_popup.html:15
 #, python-format
 msgid "%(count)d following"
 msgstr ""
 
-#: app/templates/user.html:15
+#: app/templates/user.html:18
+msgid "Send private message"
+msgstr ""
+
+#: app/templates/user.html:23
 msgid "Edit your profile"
 msgstr ""
 
-#: app/templates/user.html:20
+#: app/templates/user.html:30 app/templates/user_popup.html:23
 msgid "Follow"
 msgstr ""
 
-#: app/templates/user.html:27
+#: app/templates/user.html:37 app/templates/user_popup.html:32
 msgid "Unfollow"
+msgstr ""
+
+#: app/templates/auth/login.html:12
+msgid "New User?"
+msgstr ""
+
+#: app/templates/auth/login.html:12
+msgid "Click to Register!"
+msgstr ""
+
+#: app/templates/auth/login.html:14
+msgid "Forgot Your Password?"
+msgstr ""
+
+#: app/templates/auth/login.html:15
+msgid "Click to Reset It"
+msgstr ""
+
+#: app/templates/auth/reset_password.html:5
+msgid "Reset Your Password"
+msgstr ""
+
+#: app/templates/errors/404.html:4
+msgid "Not Found"
+msgstr ""
+
+#: app/templates/errors/404.html:5 app/templates/errors/500.html:6
+msgid "Back"
+msgstr ""
+
+#: app/templates/errors/500.html:4
+msgid "An unexpected error has occurred"
+msgstr ""
+
+#: app/templates/errors/500.html:5
+msgid "The administrator has been notified. Sorry for the inconvenience!"
 msgstr ""
 
