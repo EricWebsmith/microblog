@@ -36,3 +36,9 @@ update
 pybabel extract -F babel.cfg -k _l -o messages.pot .
 pybabel update -i messages.pot -d app/translations
 ```
+
+# docker
+
+```bash
+docker build -t microblog:latest .
+```
