@@ -16,3 +16,4 @@ class Config:
     MAIL_PORT=8025
     LANGUAGES = ['zh', 'en']
     MS_TRANSLATOR_KEY='29e43fcb2d2844e389cac10c462ccb93'
+    REDIS_URL = os.environ.get('REDIS_URL') or 'redis://'
