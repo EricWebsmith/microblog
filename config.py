@@ -17,3 +17,4 @@ class Config:
     LANGUAGES = ['zh', 'en']
     MS_TRANSLATOR_KEY='29e43fcb2d2844e389cac10c462ccb93'
     REDIS_URL = os.environ.get('REDIS_URL') or 'redis://'
+    ELASTICSEARCH_URL = 'http://localhost:9200'

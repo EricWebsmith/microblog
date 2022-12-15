@@ -4,3 +4,4 @@ app.db
 app/app.db
 logs/
 *.mo
+app.db-journal
